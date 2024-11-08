@@ -1,7 +1,7 @@
 #ifndef UTILS_H 
 #define UTILS_H 
- 
-// No need to redefine struct MinMax here 
-// Only include necessary function prototypes if any 
- 
+
+// Прототип функции для генерации массива случайных чисел
+void GenerateArray(int *array, unsigned int size, int seed); // Прототип функции
+
 #endif // UTILS_H

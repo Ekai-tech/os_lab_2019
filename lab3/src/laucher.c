@@ -2,28 +2,28 @@
 #include <stdlib.h> 
 #include <unistd.h> 
 #include <sys/types.h> 
-#include <sys/wait.h> // Include this header for waitpid 
- 
+#include <sys/wait.h> // Подключаем заголовочный файл для waitpid 
+
 int main(int argc, char *argv[]) { 
-    pid_t pid = fork(); // Create a new process 
- 
+    pid_t pid = fork(); // Создаём новый процесс 
+
     if (pid < 0) { 
-        perror("Fork failed"); 
-        return 1; // Exit if fork fails 
+        perror("Ошибка при создании процесса"); // Выводим сообщение об ошибке, если fork не удался
+        return 1; // Завершаем программу с кодом ошибки 1
     } 
- 
+
     if (pid == 0) { 
-        // Child process: execute sequential_min_max 
-        char *args[] = {"./sequential_min_max", "42", "10", NULL}; // Example arguments 
-        execvp(args[0], args); // Replace child process with sequential_min_max 
-        perror("Exec failed"); // If execvp returns, there was an error 
-        return 1; 
+        // Код выполняется в дочернем процессе: запускаем программу sequential_min_max 
+        char *args[] = {"./sequential_min_max", "42", "10", NULL}; // Пример аргументов для передачи в программу
+        execvp(args[0], args); // Замещаем дочерний процесс на программу sequential_min_max 
+        perror("Ошибка при выполнении exec"); // Если execvp возвращает управление, произошла ошибка
+        return 1; // Завершаем дочерний процесс с кодом ошибки 1
     } else { 
-        // Parent process: wait for child to finish 
+        // Код выполняется в родительском процессе: ждём завершения дочернего процесса 
         int status; 
-        waitpid(pid, &status, 0); // Wait for the specific child process to finish 
-        printf("Child process finished with status %d\n", status); 
+        waitpid(pid, &status, 0); // Ожидаем завершения конкретного дочернего процесса
+        printf("Дочерний процесс завершился с кодом статуса %d\n", status); // Выводим статус завершения дочернего процесса
     } 
- 
-    return 0; 
+
+    return 0; // Завершаем программу с кодом успеха
 }
