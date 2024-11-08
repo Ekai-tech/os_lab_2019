@@ -19,6 +19,6 @@ struct MinMax GetMinMax(int *array, unsigned int begin, unsigned int end);
 // - int *array: указатель на массив, который будет заполнен случайными числами
 // - unsigned int size: размер массива (количество элементов)
 // - int seed: начальное значение для генератора случайных чисел
-void GenerateArray(int *array, unsigned int size, int seed); 
+void GenerateArray(int *array, unsigned int array_size, unsigned int seed);
 
 #endif // FIND_MIN_MAX_H 
