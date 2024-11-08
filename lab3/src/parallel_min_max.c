@@ -190,4 +190,7 @@ int main(int argc, char **argv) {
     printf("Elapsed time: %fms\n", elapsed_time);
 
     return 0;
+    
 }
+//./parallel_min_max --seed 42 --array_size 100 --pnum 4 --by_files
+//./parallel_min_max --seed 42 --array_size 100 --pnum 4
