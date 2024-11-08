@@ -7,7 +7,6 @@ void do_one_thing(int *);
 void do_another_thing(int *);
 void do_wrap_up(int);
 int common = 0; /* Общая переменная для двух потоков */
-pthread_mutex_t mut = PTHREAD_MUTEX_INITIALIZER;
 
 int main() {
     pthread_t thread1, thread2;
@@ -32,20 +31,16 @@ int main() {
 void do_one_thing(int *pnum_times) {
     int i;
     for (i = 0; i < 50; i++) {
-        pthread_mutex_lock(&mut); // Блокируем мьютекс
         printf("Doing one thing\n");
-        (*pnum_times)++;
-        pthread_mutex_unlock(&mut); // Освобождаем мьютекс
+        (*pnum_times)++; // Увеличиваем значение без блокировки
     }
 }
 
 void do_another_thing(int *pnum_times) {
     int i;
     for (i = 0; i < 50; i++) {
-        pthread_mutex_lock(&mut); // Блокируем мьютекс
         printf("Doing another thing\n");
-        (*pnum_times)++;
-        pthread_mutex_unlock(&mut); // Освобождаем мьютекс
+        (*pnum_times)++; // Увеличиваем значение без блокировки
     }
 }
 
