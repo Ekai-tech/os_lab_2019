@@ -30,16 +30,14 @@ int main() {
 
 void do_one_thing(int *pnum_times) {
     int i;
-    for (i = 0; i < 50; i++) {
-        printf("Doing one thing\n");
+    for (i = 0; i < 100000; i++) { // Увеличено количество итераций
         (*pnum_times)++; // Увеличиваем значение без блокировки
     }
 }
 
 void do_another_thing(int *pnum_times) {
     int i;
-    for (i = 0; i < 50; i++) {
-        printf("Doing another thing\n");
+    for (i = 0; i < 100000; i++) { // Увеличено количество итераций
         (*pnum_times)++; // Увеличиваем значение без блокировки
     }
 }
